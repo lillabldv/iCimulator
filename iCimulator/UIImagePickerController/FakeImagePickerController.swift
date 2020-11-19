@@ -97,6 +97,12 @@ open class FakeImagePickerController: _FakeImagePickerController, AVCapturePhoto
         self.cameraPreviewLayer = nil
     }
     
+    open override func takePicture() {
+        let settings = AVCapturePhotoSettings()
+        settings.flashMode = .auto
+        settings.isAutoStillImageStabilizationEnabled = true
+        self.photoOutput!.capturePhoto(with: settings, delegate: self)
+    }
 
     //-MARK: Linked Method
     @IBAction func cancel(_ sender: Any) {
