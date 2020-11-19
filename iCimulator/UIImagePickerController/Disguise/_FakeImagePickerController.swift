@@ -36,7 +36,7 @@ open class _FakeImagePickerController: UINavigationController {
     
     open var showsCameraControls: Bool = true
     
-    open lazy var cameraOverlayView: UIView? = self.view
+    open lazy var cameraOverlayView: UIView? = nil
     
     open var cameraViewTransform: CGAffineTransform = CGAffineTransform()
     

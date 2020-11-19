@@ -88,6 +88,7 @@ open class FakeImagePickerController: _FakeImagePickerController, AVCapturePhoto
     override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         checkSourceType()
+        addOverlay()
     }
     
     override open func viewDidDisappear(_ animated: Bool) {
@@ -149,7 +150,7 @@ open class FakeImagePickerController: _FakeImagePickerController, AVCapturePhoto
         self.cameraPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         self.cameraPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
         self.cameraPreviewLayer?.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
-    
+        
         self.cameraPreviewLayer?.frame = CGRect(x: 0, y: 0, width: self.cameraView.frame.width, height: self.cameraView.frame.height)
         self.cameraView.layer.insertSublayer(cameraPreviewLayer!, at: 0)
     }
@@ -210,7 +211,11 @@ open class FakeImagePickerController: _FakeImagePickerController, AVCapturePhoto
         self.parent!.present(realImagePicker, animated: true, completion: nil)
     }
     
-    
+    private func addOverlay() {
+        if self.cameraOverlayView != nil {
+            self.view.addSubview(self.cameraOverlayView!)
+        }
+    }
     
     //
     //    public init() {
